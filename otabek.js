@@ -1,6 +1,6 @@
 console.log(
     `
-    Hurmatli guruh a'zolari. Qizil diplomingiz bo'lsa 121-xonaga yoki menga topshirishingiz so'raladi.
+    Hurmatli guruh a'zolari. Qizil passporting bo'lsa 121-xonaga yoki menga topshirishingiz so'raladi.
 
     Birinchi kurs diplomini olish uchun zarur ekan.
 
