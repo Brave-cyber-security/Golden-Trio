@@ -1,0 +1,1 @@
+console.log("kech qolaman NB qoymang")
