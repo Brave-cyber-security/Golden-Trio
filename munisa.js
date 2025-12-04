@@ -1,1 +1,3 @@
-console.log('tttt');
+console.log('Bu munisaning fayli');
+
+
