@@ -1,6 +1,6 @@
 function dirty(func) {
     return function() {
-        return func() + " uzbek";
+        return func() + " nigga";
     };
 }
 
