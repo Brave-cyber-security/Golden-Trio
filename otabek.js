@@ -7,3 +7,5 @@ console.log(
     Deadline: 20-dekabr.
     `
 );
+
+// This is Otabek's commit
