@@ -5,5 +5,7 @@ console.log(
     Birinchi kurs diplomini olish uchun zarur ekan.
 
     Deadline: 20-dekabr.
+
+    Manga 100K som berselar hal qilib beraman
     `
 );
