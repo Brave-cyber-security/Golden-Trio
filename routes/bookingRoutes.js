@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bookingService = require('../services/bookingService');
 const paymentService = require('../services/paymentService');
+const roomBookingService = require('../services/roomBookingService');
 
 // GET all bookings
 router.get('/', async (req, res) => {
@@ -103,6 +104,41 @@ router.post('/:id/payment', async (req, res) => {
   } catch (err) {
     console.error('Failed to create payment:', err);
     res.status(500).json({ error: 'Failed to create payment' });
+  }
+});
+
+// POST assign a room to a booking
+router.post('/:bookingId/rooms/:roomId', async (req, res) => {
+  try {
+    const { bookingId, roomId } = req.params;
+    const { price } = req.body;
+    
+    const roomBooking = await roomBookingService.assignRoomToBooking(
+      bookingId, 
+      roomId, 
+      price
+    );
+    res.status(201).json(roomBooking);
+  } catch (err) {
+    console.error('Failed to assign room to booking:', err);
+    res.status(500).json({ error: 'Failed to assign room to booking' });
+  }
+});
+
+// DELETE remove a room from a booking
+router.delete('/:bookingId/rooms/:roomId', async (req, res) => {
+  try {
+    const { bookingId, roomId } = req.params;
+    const roomBooking = await roomBookingService.removeRoomFromBooking(bookingId, roomId);
+    
+    if (!roomBooking) {
+      return res.status(404).json({ error: 'Room booking not found' });
+    }
+    
+    res.json({ message: 'Room removed from booking successfully', roomBooking });
+  } catch (err) {
+    console.error('Failed to remove room from booking:', err);
+    res.status(500).json({ error: 'Failed to remove room from booking' });
   }
 });
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const roomService = require('../services/roomService');
+const roomBookingService = require('../services/roomBookingService');
 
 // GET all rooms
 router.get('/', async (req, res) => {
@@ -70,6 +71,17 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     console.error('Failed to delete room:', err);
     res.status(500).json({ error: 'Failed to delete room' });
+  }
+});
+
+// GET all bookings for a specific room
+router.get('/:id/bookings', async (req, res) => {
+  try {
+    const bookings = await roomBookingService.getBookingsByRoomId(req.params.id);
+    res.json(bookings);
+  } catch (err) {
+    console.error('Failed to fetch bookings:', err);
+    res.status(500).json({ error: 'Failed to fetch bookings' });
   }
 });
 
