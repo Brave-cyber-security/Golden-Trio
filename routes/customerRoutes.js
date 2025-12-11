@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const customerService = require('../services/customerService');
+const roomBookingService = require('../services/roomBookingService');
 
 // GET all customers
 router.get('/', async (req, res) => {
