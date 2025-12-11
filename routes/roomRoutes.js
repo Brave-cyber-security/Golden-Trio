@@ -73,4 +73,37 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+const reviewService = require('../services/reviewService');
+
+// GET all reviews for a room
+router.get('/:id/reviews', async (req, res) => {
+  try {
+    const reviews = await reviewService.getReviewsByRoomId(req.params.id);
+    res.json(reviews);
+  } catch (err) {
+    console.error('Failed to fetch reviews:', err);
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
+// POST create review for a room
+router.post('/:id/reviews', async (req, res) => {
+  try {
+    const { customer_id, rating, comment } = req.body;
+    if (!customer_id || !rating) {
+      return res.status(400).json({ error: 'customer_id and rating are required' });
+    }
+    const review = await reviewService.createReview({
+      room_id: req.params.id,
+      customer_id,
+      rating,
+      comment
+    });
+    res.status(201).json(review);
+  } catch (err) {
+    console.error('Failed to create review:', err);
+    res.status(500).json({ error: 'Failed to create review' });
+  }
+});
+
 module.exports = router;

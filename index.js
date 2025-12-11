@@ -6,6 +6,7 @@ const roomRoutes = require('./routes/roomRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,6 +20,7 @@ app.use('/rooms', roomRoutes);
 app.use('/customers', customerRoutes);
 app.use('/bookings', bookingRoutes);
 app.use('/payments', paymentRoutes);
+app.use('/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
   res.json({ 
@@ -29,7 +31,8 @@ app.get('/', (req, res) => {
       rooms: '/rooms',
       customers: '/customers',
       bookings: '/bookings',
-      payments: '/payments'
+      payments: '/payments',
+      reviews: '/reviews'
     }
   });
 });

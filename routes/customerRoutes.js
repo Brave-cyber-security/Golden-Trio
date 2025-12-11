@@ -73,4 +73,17 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+const reviewService = require('../services/reviewService');
+
+// GET all reviews by a customer
+router.get('/:id/reviews', async (req, res) => {
+  try {
+    const reviews = await reviewService.getReviewsByCustomerId(req.params.id);
+    res.json(reviews);
+  } catch (err) {
+    console.error('Failed to fetch reviews:', err);
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+});
+
 module.exports = router;
